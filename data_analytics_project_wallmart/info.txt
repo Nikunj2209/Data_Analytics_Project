@@ -1,0 +1,25 @@
+Creating user and assigining permission:
+-- Ensure 'nikun' can use the schema
+GRANT USAGE, CREATE ON SCHEMA public TO nikun;
+
+-- Grant full access to all tables in the schema
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO nikun;
+
+-- Grant full access to all sequences in the schema
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO nikun;
+
+-- Ensure full access to the database
+GRANT ALL PRIVILEGES ON DATABASE walmart_db TO nikun;
+
+-- Alter schema ownership just to be sure
+ALTER SCHEMA public OWNER TO nikun;
+
+
+
+SELECT rolname, rolsuper, rolcreatedb, rolcreaterole, rolcanlogin
+FROM pg_roles
+WHERE rolname = 'nikun';
+
+ALTER ROLE nikun WITH CREATEDB CREATEROLE;
+
+
